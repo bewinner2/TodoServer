@@ -25,6 +25,8 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
+
+    //        1	todo 리스트 목록에 아이템을 추가
     public TodoEntity add(TodoRequest request){
 
         TodoEntity todoEntity=new TodoEntity();
@@ -35,17 +37,27 @@ public class TodoService {
 
         return  this.todoRepository.save(todoEntity);
 
+
     }
+
+
+    //        2	todo  리스트 목록 중 특정 아이템을 조회
 
     public TodoEntity searchById(Long id){
 
          return   this.todoRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
 
+
     }
 
+    //        3	todo 리스트 전체 목록을 조회
     public List<TodoEntity> searchAll(){
         return this.todoRepository.findAll();
     }
+
+
+    //        4	todo 리스트 목록 중 특정 아이템을 수정
+
 
     public TodoEntity updateById(Long id, TodoRequest Request){
         TodoEntity todoEntity=this.searchById(id);
@@ -65,11 +77,16 @@ public class TodoService {
         return this.todoRepository.save(todoEntity);
     }
 
+    //        5	todo 리스트 목록 중 특정 아이템을 삭제
+
+
     public void deleteById(Long id){
 
         this.todoRepository.deleteById(id);
 
     }
+
+    //        6	todo 리스트 전체 목록을 삭제
 
     public void deleteAll(){
         this.todoRepository.deleteAll();
